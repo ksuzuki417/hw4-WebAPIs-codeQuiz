@@ -60,7 +60,7 @@ startButton.addEventListener("click", startQuiz);
 function startQuiz() {
     startButton.classList.add("hide");
     questionContainerEl.classList.remove("hide");
-    nextQuestion();
+    renderQuestion();
 
     //Start the timer - callback function should decrement timer and check for a game
 //function startTimer() {
@@ -72,21 +72,27 @@ function startQuiz() {
 
 var currentQuestionIndex = 0;
 //setting next question
-function nextQuestion() {
+function renderQuestion() {
     // displaying questions
-    questionEl.textContent = questions[increment].question
-    for (var i = 0; i < questions[increment].answers.length; i++) {
+    questionEl.textContent = questions[currentQuestionIndex].question
+    for (var i = 0; i < questions[currentQuestionIndex].answers.length; i++) {
     //list of answer choices        
-    answer1.textContent = questions[increment].answers[0]
-    answer2.textContent = questions[increment].answers[1]
-    answer3.textContent = questions[increment].answers[2]
-    answer4.textContent = questions[increment].answers[3]
+    answer1.textContent = questions[currentQuestionIndex].answers[0]
+    answer2.textContent = questions[currentQuestionIndex].answers[1]
+    answer3.textContent = questions[currentQuestionIndex].answers[2]
+    answer4.textContent = questions[currentQuestionIndex].answers[3]
     }
-
+ 
+    
     $(".btn").on("click", function(){
         if($(this).text() === questions[currentQuestionIndex].correctAnswer){
+            // if answer was correct, then display "correct message"
             alert("Correct!");
+            // if answer was correct, then go to next question
             currentQuestionIndex++;
+            correct++;
+            renderQuestion();
+
         } else {
             alert("Wrong!");
         } 
@@ -99,15 +105,11 @@ setTimeout(function(){
 }, 90000)
 
 //answer function
-function selectAnswer () {
-    //if (answers === correctAnswer)
-    
-}
+
 
 
 // handle user answer click
-    // if answer was correct, then display "correct message"
-    // if answer was correct, then go to next question
+   
     // if answer was incorrect, then subtract 10 seconds from timer
 
 // function to advance to next question and display/render the question
