@@ -3,7 +3,10 @@ var startButton = document.getElementById("start-btn");
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question")
 var choicesEl = document.getElementById("answerChoices");
-var answerButton = document.getElementById("")
+var answer1 = document.getElementById("btn1");
+var answer2 = document.getElementById("btn2");
+var answer3 = document.getElementById("btn3");
+var answer4 = document.getElementById("btn4");
 var timerEl = document.getElementById("timer");
 
 // keep track of current question index
@@ -70,31 +73,30 @@ function startQuiz() {
 
 //setting next question
 function nextQuestion() {
-    if (increment === questions.length){
-        console.log("quiz complete")
-    } else {
-        questionEl.textContent = questions[increment].question
-        for (var i = 0; i < questions[increment].answers.length; i++) {
-            //var answerChoicesEl = document.getElementById(answerChoices)
-            //CANNOT show answer choices
-            answerChoicesEl.textContent = questions[increment].answers[i]
-            //answerChoicesEl.append(choicesEl)
+    // displaying questions
+    questionEl.textContent = questions[increment].question
+    for (var i = 0; i < questions[increment].answers.length; i++) {
+    //list of answer choices        
+    answer1.textContent = questions[increment].answers[0]
+    answer2.textContent = questions[increment].answers[1]
+    answer3.textContent = questions[increment].answers[2]
+    answer4.textContent = questions[increment].answers[3]
 
-            choicesEl.addEventListener("click", function (e){
-                e.preventDefault()
-                var answerSelected = this.textContent
-                if (answerSelected === questions[increment].correctAnswer) {
-                    increment++
-                    choicesEl.innerHTML = ""
-                    selectAnswer(true)
-                    nextQuestion()
-                } else {
-                    selectAnswer(false)
-                    timerlimit = timerlimit - 10;
+
+        choicesEl.addEventListener("click", function (e){
+            e.preventDefault()
+            var answerSelected = this.textContent
+            if (answerSelected === questions[increment].correctAnswer) {
+                increment++
+                choicesEl.innerHTML = ""
+                selectAnswer(true)
+                nextQuestion()
+            } else {
+                selectAnswer(false)
+                timerlimit = timerlimit - 10;
                 }
                 
-            })
-        }
+        })
     }
 }
 
