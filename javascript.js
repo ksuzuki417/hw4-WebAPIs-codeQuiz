@@ -50,14 +50,6 @@ var questions = [
 //Start game
 startButton.addEventListener("click", startQuiz);
 //startButton.addEventListener("click", startTimer);
-
-//Start the timer - callback function should decrement timer and check for a game
-//function startTimer() {
-    var timer = setInterval(function(){
-        console.log(timerSecs)
-        timerSecs--}, 900);
-        timerEl.append(timer);
-       
 //}
 
 
@@ -69,8 +61,16 @@ function startQuiz() {
     startButton.classList.add("hide");
     questionContainerEl.classList.remove("hide");
     nextQuestion();
+
+    //Start the timer - callback function should decrement timer and check for a game
+//function startTimer() {
+    var timer = setInterval(function(){
+        console.log(timerSecs)
+        timerSecs--}, 900);
+        timerEl.append(timer);
 }
 
+var currentQuestionIndex = 0;
 //setting next question
 function nextQuestion() {
     // displaying questions
@@ -81,23 +81,17 @@ function nextQuestion() {
     answer2.textContent = questions[increment].answers[1]
     answer3.textContent = questions[increment].answers[2]
     answer4.textContent = questions[increment].answers[3]
-
-
-        choicesEl.addEventListener("click", function (e){
-            e.preventDefault()
-            var answerSelected = this.textContent
-            if (answerSelected === questions[increment].correctAnswer) {
-                increment++
-                choicesEl.innerHTML = ""
-                selectAnswer(true)
-                nextQuestion()
-            } else {
-                selectAnswer(false)
-                timerlimit = timerlimit - 10;
-                }
-                
-        })
     }
+
+    $(".btn").on("click", function(){
+        if($(this).text() === questions[currentQuestionIndex].correctAnswer){
+            alert("Correct!");
+            currentQuestionIndex++;
+        } else {
+            alert("Wrong!");
+        } 
+
+    })
 }
 
 setTimeout(function(){
