@@ -67,7 +67,10 @@ function startQuiz() {
     var timer = setInterval(function(){
         console.log(timerSecs)
         timerSecs--}, 900);
-        timerEl.append(timer);
+        timerEl.append(timerSecs);
+        if (timerSecs === 0) {
+            clearInterval(timer);
+        };      
 }
 
 var currentQuestionIndex = 0;
@@ -99,6 +102,7 @@ function renderQuestion() {
 
     })
 }
+
 
 setTimeout(function(){
     timerEl.textContent = "Time is Up"
