@@ -10,6 +10,15 @@ body {
     font-family: sans-serif;
 }
 
+#header {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: lightblue;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
 .container {
     width: 800px;
     max-width: 80%;
